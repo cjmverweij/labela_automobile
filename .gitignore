@@ -22,3 +22,4 @@ test
 *.ini
 !example.ini
 .idea
+postgres-data/
