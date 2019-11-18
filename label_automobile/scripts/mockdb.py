@@ -1,21 +1,14 @@
+import json
 import os
 import sys
+
 import transaction as ts
-
-from pyramid.paster import (
-    get_appsettings,
-    setup_logging,
-)
-
+from pyramid.paster import get_appsettings, setup_logging
 from pyramid.scripts.common import parse_vars
 
+from ..models import (Inventory, User, get_engine, get_session_factory,
+                      get_tm_session)
 from ..models.meta import Base
-from ..models import (
-    get_engine,
-    get_tm_session,
-    get_session_factory,
-    User
-    )
 
 
 def usage(argv):
@@ -39,8 +32,37 @@ def main(argv=sys.argv):
 
     with ts.manager:
         dbsession = get_tm_session(session_factory, ts.manager)
-        user = User()
-        user.name = "John"
-        user.surname = "Doe"
-        user.email = "johndoe@example.com"
-        dbsession.add(user)
+
+        # create a single user
+        create_user(dbsession=dbsession)
+
+        # populate inventory table with mock data from json file
+        with open('mock_inventory.json', 'r') as f:
+            inventory_data = json.load(f)
+
+        for index, part in inventory_data.items():
+            create_inventory_item(
+                dbsession=dbsession,
+                title=part['part.title'],
+                description=part['part.overview'],
+                price=float(part['part.price'][1:]),
+                ref_number=part['part.part_number']
+            )
+
+
+
+def create_inventory_item(dbsession, title, description, price, ref_number):
+    inventory = Inventory()
+    inventory.title = title
+    inventory.description = description
+    inventory.price = price
+    inventory.ref_number = ref_number
+    dbsession.add(inventory)
+
+
+def create_user(dbsession, name="John", surname="doe", email="johndoe@example.com"):
+    user = User()
+    user.name = name
+    user.surname = surname
+    user.email = email
+    dbsession.add(user)
