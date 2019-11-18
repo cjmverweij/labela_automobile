@@ -30,4 +30,4 @@ services:
       - 7654:7654
     command: bash -c "python setup.py develop && pserve development.ini --reload"
     volumes:
-      - .:/app
+      - ./label_automobile:/app/label_automobile
