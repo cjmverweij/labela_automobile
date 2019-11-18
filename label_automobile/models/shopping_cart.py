@@ -9,7 +9,7 @@ class ShoppingCart(Base, BaseModel):
     __tablename__ = 'shopping_cart'
 
     user_id = Column(UUID, ForeignKey('user.id'))
-    product_id = Column(UUID, ForeignKey('inventory.id'))
+    product_id = Column(UUID, ForeignKey('product.id'))
 
     user = relationship("User", back_populates="shopping_cart")
-    product = relationship("Inventory", backref="shopping_cart")
+    product = relationship("Product", backref="shopping_cart")

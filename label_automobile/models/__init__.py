@@ -4,7 +4,7 @@ from sqlalchemy.orm import configure_mappers, sessionmaker
 
 # import or define all models here to ensure they are attached to the
 # Base.metadata prior to any initialization routines
-from .inventory import Inventory  # flake8: noqa
+from .product import Product  # flake8: noqa
 from .shopping_cart import ShoppingCart  # flake8: noqa
 from .user import User  # flake8: noqa
 

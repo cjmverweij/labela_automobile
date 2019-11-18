@@ -6,7 +6,7 @@ import transaction as ts
 from pyramid.paster import get_appsettings, setup_logging
 from pyramid.scripts.common import parse_vars
 
-from ..models import (Inventory, User, get_engine, get_session_factory,
+from ..models import (Product, User, get_engine, get_session_factory,
                       get_tm_session)
 from ..models.meta import Base
 
@@ -36,12 +36,12 @@ def main(argv=sys.argv):
         # create a single user
         create_user(dbsession=dbsession)
 
-        # populate inventory table with mock data from json file
+        # populate product table with mock data from json file
         with open('mock_inventory.json', 'r') as f:
-            inventory_data = json.load(f)
+            product_data = json.load(f)
 
-        for index, part in inventory_data.items():
-            create_inventory_item(
+        for index, part in product_data.items():
+            create_product_item(
                 dbsession=dbsession,
                 title=part['part.title'],
                 description=part['part.overview'],
@@ -51,13 +51,13 @@ def main(argv=sys.argv):
 
 
 
-def create_inventory_item(dbsession, title, description, price, ref_number):
-    inventory = Inventory()
-    inventory.title = title
-    inventory.description = description
-    inventory.price = price
-    inventory.ref_number = ref_number
-    dbsession.add(inventory)
+def create_product_item(dbsession, title, description, price, ref_number):
+    product = Product()
+    product.title = title
+    product.description = description
+    product.price = price
+    product.ref_number = ref_number
+    dbsession.add(product)
 
 
 def create_user(dbsession, name="John", surname="doe", email="johndoe@example.com"):
