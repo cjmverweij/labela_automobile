@@ -6,6 +6,11 @@ def includeme(config):
     config.add_route('user.find_by_email', '/user/email', request_method="GET")
 
     # product routes
-    config.add_route('product.list', '/inventory', request_method="GET")
-    config.add_route('product.get_by_id', '/inventory/{id}', request_method="GET")
+    config.add_route('product.list', '/product', request_method="GET")
+    config.add_route('product.get_by_id', '/product/{id}', request_method="GET")
 
+    # shopping cart routes
+    config.add_route('shopping_cart.add_products', '/shopping_cart', request_method="POST")
+    config.add_route('shopping_cart.get_by_user_id', '/shopping_cart/{user_id}', request_method="GET")
+    config.add_route('shopping_cart.delete', '/shopping_cart/{user_id}', request_method="DELETE")
+    config.add_route('shopping_cart.delete_products', '/shopping_cart/{user_id}/products', request_method="DELETE")

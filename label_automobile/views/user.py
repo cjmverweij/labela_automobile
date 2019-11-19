@@ -13,6 +13,7 @@ class UserView:
     @view_config(route_name='user.list')
     def list(self):
         return [{
+            "id": str(user.id),
             "name": user.name,
             "surname": user.surname,
             "email": user.email
@@ -28,6 +29,7 @@ class UserView:
         user = service.find_by_email(email)
 
         return {
+            "id": str(user.id),
             "name": user.name,
             "surname": user.surname,
             "email": user.email
