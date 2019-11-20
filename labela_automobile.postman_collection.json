@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "01f2a2d7-cac4-404f-95fc-00850347d08e",
+		"name": "labela_automobile export",
+		"description": "collection for label-A assignment\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "list products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7654/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7654/product/<product_id>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"product",
+								"<product_id>"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "list users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7654/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7654/user/email?email=johndoe@example.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"user",
+								"email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "johndoe@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "shopping cart",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\": \"<user_id>\",\n\t\"products\": [\n\t\t\"<product_id_1>\",\n\t\t\"<product_id_2>\",\n\t\t\"<product_id_3>\"\n\t\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7654/shopping_cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"shopping_cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users' shopping cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7654/shopping_cart/<user_id>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"shopping_cart",
+								"<user_id>"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete shopping cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7654/shopping_cart/<user_id>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"shopping_cart",
+								"<user_id>"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete products",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"products\": [\n\t\t\"<product_id_1>\",\n\t\t\"<product_id_2>\",\n\t\t\"<product_id_3>\"\n\t\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7654/shopping_cart/<user_id>/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"shopping_cart",
+								"<user_id>",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "list all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7654/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orders by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7654/order/user?user_id=<user_id>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"order",
+								"user"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "<user_id>"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7654/order/<order_id>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"order",
+								"<order_id>"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7654/order/<oder_id>",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"order",
+								"<oder_id>"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\": \"<user_id>\",\n\t\"delivery_date\": \"20/12/19\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7654/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7654",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
