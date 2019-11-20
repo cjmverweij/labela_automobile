@@ -61,7 +61,7 @@ class ShoppingCartView:
     @view_config(route_name='shopping_cart.delete')
     def delete(self):
         user_id = self.request.matchdict['user_id']
-        deleted = self.service.delete(user_id)
+        self.service.delete(user_id)
 
         return {}
 

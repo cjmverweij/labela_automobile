@@ -72,7 +72,7 @@ class OrderView:
         id = self.request.matchdict['id']
 
         try:
-            deleted = self.service.delete_order(id)
+            self.service.delete_order(id)
         except NoResultFound as e:
             raise HTTPNotFound(
                 json_body={

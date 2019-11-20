@@ -24,9 +24,21 @@ class OrderService:
         return self._repository.get_by_id(id)
 
     def find_by_user_id(self, user_id):
+        """
+        gets all orders of a specific user
+        :param user_id: str
+        :return: list of orders
+        """
         return self._repository.find_by_user_id(user_id)
 
     def add_order(self, user_id, delivery_date):
+        """
+        creates an order from a specific users shopping cart and then deletes (empties) the
+        respective shopping cart
+        :param user_id: str
+        :param delivery_date: str
+        :return: UUID order_id
+        """
         shopping_cart_repository = ShoppingCartRepository(self.session)
         shopping_cart = shopping_cart_repository.get_by_user_id(user_id)
 
@@ -46,4 +58,9 @@ class OrderService:
         return order_id
 
     def delete_order(self, order_id):
+        """
+        deletes a specific order
+        :param order_id: str
+        :return:
+        """
         self._repository.delete_order(order_id)
