@@ -8,7 +8,7 @@ class ShoppingCartService:
     def add_products(self, user_id, products: list):
         """
         adds a product to a users shopping cart
-        :param user_id: id of the user
+        :param user_id: str id of the user
         :param product_id: list of id's of the products to add
         :return: ShoppingCart - the updated shopping cart
         """

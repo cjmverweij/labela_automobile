@@ -14,7 +14,8 @@ class User(BaseModel, Base):
     password = Column(String)
     active = Column(Boolean, nullable=False, default=False)
 
-    shopping_cart = relationship("ShoppingCart", back_populates="user")
+    shopping_cart = relationship("ShoppingCart", backref="user")
+    orders = relationship("Order", backref="user")
 
     @hybrid_property
     def email(self):

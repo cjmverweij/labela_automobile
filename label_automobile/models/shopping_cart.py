@@ -4,12 +4,10 @@ from sqlalchemy.orm import relationship
 
 from label_automobile.models.meta import Base, BaseModel
 
-
 class ShoppingCart(Base, BaseModel):
     __tablename__ = 'shopping_cart'
 
     user_id = Column(UUID, ForeignKey('user.id'))
     product_id = Column(UUID, ForeignKey('product.id'))
 
-    user = relationship("User", back_populates="shopping_cart")
     product = relationship("Product", backref="shopping_cart")
