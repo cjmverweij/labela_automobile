@@ -33,8 +33,12 @@ def main(argv=sys.argv):
     with ts.manager:
         dbsession = get_tm_session(session_factory, ts.manager)
 
-        # create a single user
+        # create a two users
         create_user(dbsession=dbsession)
+        create_user(dbsession,
+                    name="Jane",
+                    surname="Doe",
+                    email="Janedoe@example.com")
 
         # populate product table with mock data from json file
         with open('mock_inventory.json', 'r') as f:

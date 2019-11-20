@@ -28,6 +28,6 @@ services:
       - db
     ports:
       - 7654:7654
-    command: bash -c "python setup.py develop && pserve development.ini --reload"
+    command: bash -c "pserve development.ini --reload"
     volumes:
       - ./label_automobile:/app/label_automobile

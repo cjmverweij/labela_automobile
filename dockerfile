@@ -8,8 +8,11 @@ WORKDIR /app
 
 COPY . /app
 
+ENV PYTHONUNBUFFERED 0
+
 RUN sed -i "s/localhost/db/g" development.ini
 
-RUN pip install --upgrade pip setuptools \
-&& pip install --upgrade pip setuptools \
-&& pip install -e ".[testing]"
+RUN pip install --upgrade pip setuptools
+RUN pip install --upgrade pip setuptools
+RUN pip install -e ".[testing]"
+RUN python setup.py develop
